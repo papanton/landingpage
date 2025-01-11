@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Privacy() {
   return (
@@ -8,11 +9,11 @@ export default function Privacy() {
       <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50">
         <Link href="/" className="text-lg font-semibold flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center">
-            <img 
+            <Image 
               src="/images/logo.svg" 
               alt="Unusual Labs Logo" 
-              width="32"
-              height="32"
+              width={32}
+              height={32}
               className="w-full h-full object-contain"
             />
           </div>
@@ -41,7 +42,7 @@ export default function Privacy() {
                 <li>App usage data and preferences</li>
                 <li>Device information (model, operating system)</li>
               </ul>
-              <p>We do not collect or store sensitive personal information.</p>
+              <p>We don&apos;t collect or store sensitive personal information.</p>
             </section>
 
             <section className="mb-8">

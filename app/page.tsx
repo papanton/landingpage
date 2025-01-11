@@ -145,11 +145,11 @@ export default function Page() {
       <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50">
         <Link href="/" className="text-lg font-semibold flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center">
-            <img 
+            <Image 
               src="/images/logo.svg" 
               alt="Unusual Labs Logo" 
-              width="32"
-              height="32"
+              width={32}
+              height={32}
               className="w-full h-full object-contain"
             />
           </div>
@@ -271,9 +271,11 @@ export default function Page() {
                 className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-1">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
-                    <img 
+                    <Image 
                       src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/06/4c/0e/064c0ea8-220d-dcd9-bf5d-26095fd78d26/AppIcon-0-0-1x_U007epad-0-85-220.jpeg/460x0w.webp" 
                       alt="Yuzu App Icon" 
+                      width={64}
+                      height={64}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -290,9 +292,11 @@ export default function Page() {
                 className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-2">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
-                    <img 
+                    <Image 
                       src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d8/eb/49/d8eb49ba-2974-9786-d8de-277035a9e2c0/AppIcon-0-0-1x_U007epad-0-85-220.png/460x0w.webp" 
                       alt="ChromaKit App Icon" 
+                      width={64}
+                      height={64}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -306,12 +310,14 @@ export default function Page() {
               <a href="https://apps.apple.com/us/app/motivate-inspirational-quotes/id1452080385" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-1">
+                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-3">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
-                    <img 
+                    <Image 
                       src="https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/d4/f4/67/d4f467a1-199f-5a51-7692-d99624275540/AppIcon-1x_U007emarketing-0-7-0-85-220.png/460x0w.webp" 
                       alt="Motivate App Icon" 
+                      width={64}
+                      height={64}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -325,12 +331,14 @@ export default function Page() {
               <a href="https://apps.apple.com/us/app/pcento-guess-the-percentage/id1348080741" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-2">
+                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-4">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
-                    <img 
+                    <Image 
                       src="https://is1-ssl.mzstatic.com/image/thumb/Purple114/v4/c6/5f/a3/c65fa30d-a9fb-6050-054a-ca9d95630634/AppIcon-1x_U007emarketing-0-7-0-85-220.png/460x0w.webp" 
                       alt="Pcento App Icon" 
+                      width={64}
+                      height={64}
                       className="w-full h-full object-cover"
                     />
                   </div>

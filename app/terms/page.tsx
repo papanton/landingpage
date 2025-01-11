@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Terms() {
   return (
@@ -8,11 +9,11 @@ export default function Terms() {
       <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50">
         <Link href="/" className="text-lg font-semibold flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center">
-            <img 
+            <Image 
               src="/images/logo.svg" 
               alt="Unusual Labs Logo" 
-              width="32"
-              height="32"
+              width={32}
+              height={32}
               className="w-full h-full object-contain"
             />
           </div>
@@ -54,7 +55,7 @@ export default function Terms() {
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">6. Disclaimers</h2>
-              <p>Our services are provided "as is" and "as available" without any warranties, expressed or implied. We expressly disclaim all warranties of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, non-infringement, and any warranties arising out of course of dealing or usage of trade.</p>
+              <p>Our services are provided &quot;as is&quot; and &quot;as available&quot; without any warranties, expressed or implied. We expressly disclaim all warranties of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, non-infringement, and any warranties arising out of course of dealing or usage of trade.</p>
               <p className="mt-4">We make no warranty that (a) our services will meet your requirements, (b) our services will be uninterrupted, timely, secure, or error-free, (c) the results from the use of our services will be accurate or reliable, (d) the quality of any products, services, information, or other material purchased or obtained through our services will meet your expectations, or (e) any errors in our services will be corrected.</p>
             </section>
 
