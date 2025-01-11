@@ -176,7 +176,7 @@ export default function Page() {
               We Build Apps<br />People Love
             </h1>
             <p className="text-xl text-neutral-400 mb-8 max-w-2xl mx-auto opacity-0 fade-in delay-2">
-              Crafting exceptional mobile experiences that push the boundaries of innovation and delight users worldwide.
+              Using cutting-edge technologies to craft delightful user experiences that make a lasting impact.
             </p>
             <div className="opacity-0 fade-in delay-3">
               <Button 
@@ -200,7 +200,7 @@ export default function Page() {
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-32">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">From Concept to App Store</h2>
-              <p className="text-xl text-neutral-400">We transform ideas into successful mobile applications.</p>
+              <p className="text-xl text-neutral-400">We transform emerging technologies into consumer apps that enrich people's lives.</p>
             </div>
 
             <div className="relative">
