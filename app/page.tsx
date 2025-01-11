@@ -7,18 +7,49 @@ import Image from "next/image"
 
 export default function Page() {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const lastScrollTime = useRef<number>(Date.now());
+  const scrollVelocity = useRef<number>(0);
 
   useEffect(() => {
+    // Track scroll velocity
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const now = Date.now();
+          const timeDiff = now - lastScrollTime.current;
+          const distanceDiff = Math.abs(window.scrollY - lastScrollY);
+          scrollVelocity.current = distanceDiff / timeDiff;
+          
+          lastScrollY = window.scrollY;
+          lastScrollTime.current = now;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     // Handle scroll animations
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
+          // If scrolling too fast, show elements immediately without animation
+          if (scrollVelocity.current > 1.5) { // Threshold in pixels/millisecond
+            entry.target.classList.add('no-animation', 'animate-in');
+          } else {
+            setTimeout(() => {
+              entry.target.classList.add('animate-in');
+            }, 50);
+          }
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '50px'
+      threshold: [0, 0.1, 0.2, 0.3],
+      rootMargin: '100px'
     });
 
     // Observe all scroll-animation elements
@@ -34,15 +65,24 @@ export default function Page() {
       }
     }
 
-    return () => observerRef.current?.disconnect();
+    return () => {
+      observerRef.current?.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-foreground">
       <style jsx global>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+          from { 
+            opacity: 0; 
+            transform: translateY(30px) scale(0.95); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateY(0) scale(1); 
+          }
         }
 
         @keyframes shimmer {
@@ -127,18 +167,36 @@ export default function Page() {
 
         .scroll-animation {
           opacity: 0;
-          transform: translateY(20px);
-          transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+          transform: translateY(20px) scale(0.98);
+          transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.3s ease;
+          will-change: opacity, transform;
+        }
+
+        .scroll-animation.no-animation {
+          transition: none !important;
         }
 
         .scroll-animation.animate-in {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(0) scale(1);
         }
 
-        .scroll-delay-1 { transition-delay: 0.1s; }
-        .scroll-delay-2 { transition-delay: 0.2s; }
+        .scroll-delay-1 { transition-delay: 0s; }
+        .scroll-delay-2 { transition-delay: 0.15s; }
         .scroll-delay-3 { transition-delay: 0.3s; }
+        .scroll-delay-4 { transition-delay: 0.45s; }
+
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 1s ease-out forwards;
+          animation-delay: 0.5s;
+        }
       `}</style>
 
       {/* Navigation */}
@@ -209,11 +267,11 @@ export default function Page() {
 
             <div className="relative">
               {/* Decorative line connecting the steps */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neutral-800 via-pink-500/20 to-neutral-800 hidden md:block" />
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neutral-800 via-pink-500/20 to-neutral-800 hidden md:block opacity-0 animate-fade-in" />
               
               <div className="grid md:grid-cols-3 gap-24 relative">
-                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-1">
-                  <div className="text-2xl mb-6">
+                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-1 hover:border-neutral-700 transition-all duration-300">
+                  <div className="text-2xl mb-6 text-pink-500">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                       <polyline points="7 10 12 15 17 10"/>
@@ -226,8 +284,8 @@ export default function Page() {
                   </p>
                 </div>
 
-                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-2">
-                  <div className="text-2xl mb-6">
+                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-2 hover:border-neutral-700 transition-all duration-300">
+                  <div className="text-2xl mb-6 text-blue-500">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                     </svg>
@@ -238,8 +296,8 @@ export default function Page() {
                   </p>
                 </div>
 
-                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-3">
-                  <div className="text-2xl mb-6">
+                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-3 hover:border-neutral-700 transition-all duration-300">
+                  <div className="text-2xl mb-6 text-green-500">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10"/>
                       <line x1="2" y1="12" x2="22" y2="12"/>
@@ -310,7 +368,7 @@ export default function Page() {
               <a href="https://apps.apple.com/us/app/motivate-inspirational-quotes/id1452080385" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-3">
+                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-1">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                     <Image 
@@ -331,7 +389,7 @@ export default function Page() {
               <a href="https://apps.apple.com/us/app/pcento-guess-the-percentage/id1348080741" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-4">
+                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-2">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                     <Image 
