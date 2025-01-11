@@ -75,103 +75,41 @@ export default function Page() {
     <div className="flex flex-col min-h-screen bg-black text-foreground">
       <style jsx global>{`
         @keyframes fadeIn {
-          from { 
+          0% { 
             opacity: 0; 
             transform: translateY(30px) scale(0.95); 
           }
-          to { 
+          100% { 
             opacity: 1; 
             transform: translateY(0) scale(1); 
           }
         }
 
-        @keyframes shimmer {
-          0% { background-position: 0% 0; }
-          100% { background-position: 200% 0; }
-        }
-
         .fade-in {
-          animation: fadeIn 0.8s ease-out forwards;
           opacity: 0;
+          animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          transform-origin: center bottom;
+          will-change: opacity, transform;
+          backface-visibility: hidden;
         }
 
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        
-        .glimmer-card {
-          position: relative;
-          background: rgb(23, 23, 23);
-          border-radius: 12px;
-          overflow: hidden;
-        }
-        
-        .glimmer-card::before {
-          content: '';
-          position: absolute;
-          inset: -1px;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(236, 72, 153, 0.03),
-            rgba(236, 72, 153, 0.06),
-            rgba(236, 72, 153, 0.03),
-            transparent
-          );
-          background-size: 200% 100%;
-          animation: shimmer 8s ease-in-out infinite;
-          pointer-events: none;
-        }
-
-        .glimmer-pill {
-          position: relative;
-          background: rgb(23, 23, 23);
-          border-radius: 9999px;
-          overflow: hidden;
-        }
-        
-        .glimmer-pill::before {
-          content: '';
-          position: absolute;
-          inset: -1px;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(236, 72, 153, 0.03),
-            rgba(236, 72, 153, 0.06),
-            rgba(236, 72, 153, 0.03),
-            transparent
-          );
-          background-size: 200% 100%;
-          animation: shimmer 8s ease-in-out infinite;
-          pointer-events: none;
-        }
-
-        .hero-glow {
-          position: absolute;
-          top: 85%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 140%;
-          height: 600px;
-          background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.08) 0%,
-            rgba(255, 255, 255, 0.03) 35%,
-            transparent 70%
-          );
-          pointer-events: none;
-          z-index: 0;
-          filter: blur(50px);
-        }
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.45s; }
 
         .scroll-animation {
           opacity: 0;
           transform: translateY(20px) scale(0.98);
-          transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                    border-color 0.3s ease;
+          transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.5s ease;
           will-change: opacity, transform;
+          backface-visibility: hidden;
+          transform-origin: center;
+          -webkit-font-smoothing: subpixel-antialiased;
+          position: relative;
+          height: auto;
+          min-height: fit-content;
         }
 
         .scroll-animation.no-animation {
@@ -194,8 +132,8 @@ export default function Page() {
         }
 
         .animate-fade-in {
-          animation: fade-in 1s ease-out forwards;
-          animation-delay: 0.5s;
+          animation: fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: 0.6s;
         }
       `}</style>
 
@@ -229,18 +167,18 @@ export default function Page() {
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="py-20 px-6 relative">
-          <div className="hero-glow" />
+          <div className="hero-glow opacity-0 animate-fade-in" />
           <div className="max-w-[1200px] mx-auto text-center relative z-10">
-            <div className="inline-flex items-center px-3 py-1 text-sm text-neutral-400 mb-8 glimmer-pill fade-in">
+            <div className="inline-flex items-center px-3 py-1 text-sm text-neutral-400 mb-8 glimmer-pill opacity-0 fade-in">
               <span>Consumer Mobile App Studio</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 tracking-tight fade-in delay-1">
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 tracking-tight opacity-0 fade-in delay-1">
               We Build Apps<br />People Love
             </h1>
-            <p className="text-xl text-neutral-400 mb-8 max-w-2xl mx-auto fade-in delay-2">
+            <p className="text-xl text-neutral-400 mb-8 max-w-2xl mx-auto opacity-0 fade-in delay-2">
               Crafting exceptional mobile experiences that push the boundaries of innovation and delight users worldwide.
             </p>
-            <div className="fade-in delay-3">
+            <div className="opacity-0 fade-in delay-3">
               <Button 
                 size="lg" 
                 className="rounded-full"
@@ -260,52 +198,52 @@ export default function Page() {
         {/* Features Section */}
         <section className="py-32 px-6 border-t border-neutral-800">
           <div className="max-w-[1200px] mx-auto">
-            <div className="text-center mb-24 scroll-animation">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">From Concept to App Store</h2>
-              <p className="text-neutral-400">We transform innovative ideas into successful mobile applications.</p>
+            <div className="text-center mb-32">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">From Concept to App Store</h2>
+              <p className="text-xl text-neutral-400">We transform ideas into successful mobile applications.</p>
             </div>
 
             <div className="relative">
               {/* Decorative line connecting the steps */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neutral-800 via-pink-500/20 to-neutral-800 hidden md:block opacity-0 animate-fade-in" />
+              <div className="absolute left-1/2 top-8 bottom-8 w-px bg-gradient-to-b from-neutral-800 via-pink-500/20 to-neutral-800 hidden md:block" />
               
-              <div className="grid md:grid-cols-3 gap-24 relative">
-                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-1 hover:border-neutral-700 transition-all duration-300">
-                  <div className="text-2xl mb-6 text-pink-500">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="grid md:grid-cols-3 gap-12 md:gap-16 relative">
+                <div className="bg-neutral-900/50 backdrop-blur-sm p-10 rounded-2xl border border-neutral-800 hover:border-neutral-700 transition-all duration-500 h-full">
+                  <div className="text-2xl mb-8 text-pink-500">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                       <polyline points="7 10 12 15 17 10"/>
                       <line x1="12" y1="15" x2="12" y2="3"/>
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Design & UX</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-2xl font-semibold mb-4">Design & UX</h3>
+                  <p className="text-lg text-neutral-400 leading-relaxed">
                     Beautiful, intuitive interfaces that users love to engage with, crafted with meticulous attention to detail.
                   </p>
                 </div>
 
-                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-2 hover:border-neutral-700 transition-all duration-300">
-                  <div className="text-2xl mb-6 text-blue-500">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <div className="bg-neutral-900/50 backdrop-blur-sm p-10 rounded-2xl border border-neutral-800 hover:border-neutral-700 transition-all duration-500 h-full">
+                  <div className="text-2xl mb-8 text-blue-500">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Development</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-2xl font-semibold mb-4">Development</h3>
+                  <p className="text-lg text-neutral-400 leading-relaxed">
                     Robust, scalable applications built with cutting-edge technology and performance in mind.
                   </p>
                 </div>
 
-                <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 scroll-animation scroll-delay-3 hover:border-neutral-700 transition-all duration-300">
-                  <div className="text-2xl mb-6 text-green-500">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <div className="bg-neutral-900/50 backdrop-blur-sm p-10 rounded-2xl border border-neutral-800 hover:border-neutral-700 transition-all duration-500 h-full">
+                  <div className="text-2xl mb-8 text-green-500">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10"/>
                       <line x1="2" y1="12" x2="22" y2="12"/>
                       <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Launch & Scale</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-2xl font-semibold mb-4">Launch & Scale</h3>
+                  <p className="text-lg text-neutral-400 leading-relaxed">
                     End-to-end support from app store submission to scaling your user base globally.
                   </p>
                 </div>
@@ -319,7 +257,7 @@ export default function Page() {
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-24 scroll-animation">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Apps</h2>
-              <p className="text-neutral-400">Discover our collection of innovative mobile applications</p>
+              <p className="text-neutral-400">Discover our collection of mobile applications</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
