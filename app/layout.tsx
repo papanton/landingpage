@@ -5,8 +5,11 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Software Composer LP - Cursor Template",
-  description: "Create stunning landing pages in minutes with just 3 prompts. Save thousands on design and development with our Cursor-powered template.",
+  title: "Unusual Labs - Consumer Mobile App Studio",
+  description: "We create exceptional consumer mobile applications that push the boundaries of innovation and user experience.",
+  icons: {
+    icon: '/images/logo.svg',
+  },
 };
 
 export default function RootLayout({
