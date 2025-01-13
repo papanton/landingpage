@@ -6,18 +6,19 @@ import Image from "next/image"
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-black text-foreground">
-      <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50">
-        <Link href="/" className="text-lg font-semibold flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center">
+      <header className="flex items-center justify-between py-4 px-4 sm:px-6 border-b border-neutral-800/50">
+        <Link href="/" className="text-base sm:text-lg font-semibold flex items-center gap-2 min-w-0 flex-shrink">
+          <div className="relative w-7 h-7 flex-shrink-0">
             <Image 
               src="/images/logo.svg" 
               alt="Unusual Labs Logo" 
-              width={32}
-              height={32}
-              className="w-full h-full object-contain"
+              fill
+              sizes="(max-width: 768px) 28px, 32px"
+              className="object-contain"
+              priority
             />
           </div>
-          <span>Unusual Labs</span>
+          <span className="whitespace-nowrap truncate">Unusual Labs</span>
         </Link>
       </header>
 
