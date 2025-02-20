@@ -283,10 +283,31 @@ export default function Page() {
                 </div>
               </a>
 
-              <a href="https://apps.apple.com/us/app/chromakit-design-app-palettes/id6723902289" 
+              <a href="https://apps.apple.com/us/app/snatched-fashion-with-color/id6739070515" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-2">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                    <Image 
+                      src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/24/41/46/244146dc-17d0-70b9-98ae-0edc476b70cc/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/434x0w.webp" 
+                      alt="Snatched App Icon" 
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-purple-500 transition-colors">Snatched</h3>
+                    <p className="text-neutral-400">Discover your perfect style with AI-powered color analysis. Get personalized fashion and beauty recommendations that make you shine.</p>
+                  </div>
+                </div>
+              </a>
+
+              <a href="https://apps.apple.com/us/app/chromakit-design-app-palettes/id6723902289" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-1">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                     <Image 
@@ -307,7 +328,7 @@ export default function Page() {
               <a href="https://apps.apple.com/us/app/motivate-inspirational-quotes/id1452080385" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-1">
+                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-2">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                     <Image 
@@ -328,7 +349,7 @@ export default function Page() {
               <a href="https://apps.apple.com/us/app/pcento-guess-the-percentage/id1348080741" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-2">
+                className="group bg-neutral-900 p-8 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-all scroll-animation scroll-delay-1">
                 <div className="flex items-start gap-6">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                     <Image 
